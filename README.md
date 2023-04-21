@@ -13,4 +13,6 @@ this project was possible with Day.js, Bootstrap and Jquery
 
 ![color coded slots where user can save events](./Assets/PlannerGrn.jpg)
 
+https://ryantheferreira.github.io/WorkDay-Scheduler/
+
 # will update with more pictures 
