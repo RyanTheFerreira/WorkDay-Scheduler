@@ -6,9 +6,11 @@ console.log(time);
 $('#currentDay').text(today.format('dddd, MMMM D, YYYY h:mm A'));
 
 $(document).ready(function() {
+  //code for getting current time
   var now = new Date();
   var hour = now.getHours();
   
+  //check if the time block is in the past, present, or future and set the background color accordingly
   $(".time-block").each(function() {
     var blockHour = parseInt($(this).attr("id").split("-")[1]);
     if (blockHour < hour) {
@@ -19,9 +21,20 @@ $(document).ready(function() {
       $(this).addClass("future");
     }
   });
+
 });
 
+//get all the save buttons
+var saveButton = $(".saveBtn");
 
+saveButton.click(function(){
+  var description = $(this).sibilings(".description").val();
+  
+  var hour = $(this).parent().attr("id");
+
+  localStorage.setItem(hour, description);
+}
+);
 
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
