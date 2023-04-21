@@ -14,37 +14,27 @@ $(document).ready(function() {
   $(".time-block").each(function() {
     var blockHour = parseInt($(this).attr("id").split("-")[1]);
     if (blockHour < hour) {
-      $(this).addClass("past");
+      $(this).addClass("past").removeClass("present future");
     } else if (blockHour === hour) {
-      $(this).addClass("present");
+      $(this).addClass("present").removeClass("past future");
     } else {
-      $(this).addClass("future");
+      $(this).addClass("future").removeClass("past present");
     }
   });
 
 });
 
-//get all the save buttons
-var saveButton = $("#saveBtn");
+$(document).ready(function() {
+  // Load saved data from local storage
+  $(".description").each(function() {
+    var id = $(this).parent().attr("id");
+    $(this).val(localStorage.getItem(id));
+  });
 
-saveButton.click(function(){
-  var description = $(this).siblings(".description").val();
-  
-  var hour = $(this).parent().attr("id");
-
-  localStorage.setItem(hour, description);
-}
-);
-
-//code for saving input from LocalStorage
-$(".description").each(function()
-{
-  var key = $(this).parent().attr("id");
-
-  var value = localStorage.getItem(key);
-
-  if (value !== null) {
-    $(this).val(value);
-  }
-})
- 
+  // Save data to local storage on button click
+  $(".saveBtn").on("click", function() {
+    var id = $(this).parent().attr("id");
+    var value = $(this).siblings(".description").val();
+    localStorage.setItem(id, value);
+  });
+});
