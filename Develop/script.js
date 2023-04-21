@@ -36,6 +36,7 @@ saveButton.click(function(){
 }
 );
 
+//code for saving input from LocalStorage
 $(".description").each(function()
 {
   var key = $(this).parent().attr("id");
